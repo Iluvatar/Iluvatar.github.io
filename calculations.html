@@ -1,0 +1,209 @@
+<html>
+
+<head>
+
+    <title>CALCULATE</title>
+
+    <style type="text/css">
+    body {
+        background-color: #F0F0FF;
+    }
+
+    div.display {
+        position: absolute;
+        left: 500;
+        top: 8;
+        width: 300px;
+        line-height: 2;
+    }
+
+    div#data_input {
+        width: 300px;
+    }
+
+    label {
+        display: inline-block;
+        width: 250px;
+    }
+
+    input {
+        display: inline-block;
+        width: 50px;
+    }
+
+    .spaced {
+        line-height: 2;
+    }
+
+    .unknown {
+        color: red;
+        font-weight: bold;
+    }
+
+    .known {
+        color: green;
+    }
+
+    .line {
+        line-height: 5s;
+        background: red;
+    }
+
+
+    .mouseover {
+        position:relative;
+    }
+
+    .mouseover div {
+        display: none;
+    }
+
+    .mouseover_text {
+        color: blue;
+        text-decoration: underline;
+    }
+
+    .mouseover_hover {
+        position:relative;
+    }
+
+    .mouseover_hover div {
+        display:block;
+        position:absolute;
+        width: 40em;
+        top:1.3em;
+        z-index:1000;
+        background-color: #DDD;
+        padding: 5px;
+        border-radius: 4px;
+    }
+    </style>
+
+    <script type="text/javascript">
+    var QUADRAT_WIDTH = .5;
+
+    function isNum(x) {
+        return x != 0 && !isNaN(x) && x != Infinity;
+    }
+
+    function display_value(id, value, unit) {
+        var element = document.getElementById(id);
+        if (isNum(value)) {
+            element.innerHTML = "<span class='known'>" + value + " " + unit +
+                                "</span><br>";
+        } else {
+            element.innerHTML = "<span class='unknown'>UNKNOWN</span><br>";
+        }
+    }
+
+    function update_ship_dims() {
+        var output = document.getElementById("display");
+
+        var quad_size = document.getElementById("quad_size").value;
+        var ship_length = document.getElementById("ship_length").value;
+        var ship_width_1 = document.getElementById("ship_width_1").value;
+
+        var ship_width_2 = document.getElementById("ship_width_2").value;
+        var ship_height = document.getElementById("ship_height").value;
+
+        var d_real_ship_length = ship_length / quad_size * QUADRAT_WIDTH;
+        var d_real_ship_width = ship_width_1 / quad_size * QUADRAT_WIDTH;
+        var d_real_ship_height = ship_height / ship_width_2 * d_real_ship_width;
+
+
+        var num_mussels = document.getElementById("num_mussels").value;
+
+        var d_ship_area = 2 * d_real_ship_length * d_real_ship_width +
+                          2 * d_real_ship_width * d_real_ship_height +
+                          2 * d_real_ship_height * d_real_ship_length;
+        var d_total_mussels = d_ship_area / Math.pow(QUADRAT_WIDTH, 2) * num_mussels;
+
+
+        display_value("real_ship_length", d_real_ship_length.toFixed(3), "m");
+        display_value("real_ship_width", d_real_ship_width.toFixed(3), "m");
+        display_value("real_ship_height", d_real_ship_height.toFixed(3), "m");
+
+        display_value("real_num_mussels", Math.round(d_total_mussels), "mussels");
+    }
+    </script>
+
+
+</head>
+
+<body>
+    <div id="data_input">
+        <form>
+            <label class="spaced" for="quad_size">Apparent quardrat size: </label><input type="text" id="quad_size" onchange="update_ship_dims()">
+            <label class="spaced" for="ship_length">Apparent ship length: </label><input type="text" id="ship_length" onchange="update_ship_dims()">
+            <label class="spaced" for="ship_width_1">Apparent ship width (pass 1): </label><input type="text" id="ship_width_1" onchange="update_ship_dims()">
+            <br><br>
+            <label class="spaced" for="ship_width_2">Apparent ship width (pass 2): </label><input type="text" id="ship_width_2" onchange="update_ship_dims()">
+            <label class="spaced" for="ship_height">Apparent ship height: </label><input type="text" id="ship_height" onchange="update_ship_dims()">
+            <br><br>
+            <hr>
+            <br>
+            <label class="spaced" for="num_mussels">Number of zebra mussels: </label><input type="text" id="num_mussels" onchange="update_ship_dims()">
+        </form>
+    </div>
+
+    <div class="display">
+        <span class="mouseover">
+            <span class="mouseover_text">(?)</span>
+            <div>
+                The length of the ship is calculated by comparing how large it appears on the screen to how large the quadrat appears. Since we know the dimensions of the quadrat, we can calculate the length.<br>
+                <pre>Ship length = ship screen length / quadrat screen width * quadrat actual width</pre>
+            </div>
+        </span>
+        Ship length: <span id="real_ship_length"></span>
+
+
+        <span class="mouseover">
+            <span class="mouseover_text">(?)</span>
+            <div>
+                The width of the ship is calculated by comparing how large it appears on the screen to how large the quadrat appears. Since we know the dimensions of the quadrat, we can calculate the width.<br>
+                <pre>Ship width = ship screen width / quadrat screen width * quadrat actual width</pre>
+            </div>
+        </span>
+        Ship width: <span id="real_ship_width"></span>
+
+
+        <span class="mouseover">
+            <span class="mouseover_text">(?)</span>
+            <div>
+                We can't see the hight of the ship and the quadrat in the same image, but we can see the height and the width. As we know the width from before, we can use the apparent size to find the height of the ship.<br>
+                <pre>Ship height = ship screen height / ship screen width * ship actual width</pre>
+            </div>
+        </span>
+        Ship height: <span id="real_ship_height"></span>
+
+
+        <span class="mouseover">
+            <span class="mouseover_text">(?)</span>
+            <div>
+                Once we know the dimensions of the ship and have an estimate for the density of zebra mussels, we can estimate the total number of zebra mussels on the whole ship.<br>
+                <pre>Total mussels = ship surface area / (quadrat width) ^ 2 * mussels in quadrat</pre>
+            </div>
+        </span>
+        Total mussels: <span id="real_num_mussels"></span>
+        
+    </div>
+
+
+
+    <script type="text/javascript">
+    update_ship_dims();
+
+    var span = document.querySelectorAll('.mouseover');
+    for (var i = span.length; i--;) {
+        span[i].onmouseover = function () {
+            this.className = 'mouseover_hover';
+        };
+        span[i].onmouseout = function () {
+            this.className = 'mouseover';
+        };
+    }
+    </script>
+
+</body>
+
+</html>
