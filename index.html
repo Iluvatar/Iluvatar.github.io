@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Sales Calculator</title>
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+    <label for="quarterNum">Quarter:</label>
+    <select class="dataInput" id="quarterNum" onchange="updateCost()">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+    </select><br>
+    <label for="numUsers">Number of users:</label>
+    <input class="dataInput" type="text" id="numUsers" onchange="updateCost()">
+
+    <br><br>
+    Total Cost: $<span id="totalCost"></span><br>
+    Cost per User: $<span id="userCost"></span><br>
+
+    <script src="calculate.js"></script>
+    <script>
+        function updateCost() {
+            var quarter = document.getElementById("quarterNum").value;
+            var users = document.getElementById("numUsers").value;
+
+            var totalCost = document.getElementById("totalCost");
+            var userCost = document.getElementById("userCost");
+
+            totalCost.innerHTML = getQuarterlyFee(quarter, users).toFixed(2);
+            userCost.innerHTML = (getQuarterlyFee(quarter, users) / numUsers).toFixed(2);
+        }
+
+        updateCost();
+    </script>
+    
+</body>
