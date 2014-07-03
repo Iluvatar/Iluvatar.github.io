@@ -1,3 +1,7 @@
+body {
+    color:#FFC285;
+}
+
 label {
     display: inline-block;
     width: 150px;
