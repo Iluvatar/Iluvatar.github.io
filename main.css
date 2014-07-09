@@ -2,13 +2,45 @@ body {
     background-color: #F0F0FF;
 }
 
-label {
+.container {
+    position: relative;
+}
+
+#quarterHolder:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+div.quarterDisplay {
+    width: 152px;
+    height: 152px;
+    border-radius: 10px;
+    margin: 5px;
+    background-color: #D8D8E6;
+    display: block;
+    float: left;
+}
+
+.userLabel {
+    position: relative;
+    top: 10px;
+    left: 10px;
+}
+
+.userInput {
+    display: inline-block;
+    width: 50px;
+}
+
+/*label {
     display: inline-block;
     width: 150px;
     line-height: 2;
-}
+}*/
 
 input {
     display: inline-block;
     width: 50px;
 }
+

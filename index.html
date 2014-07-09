@@ -8,6 +8,17 @@
 </head>
 
 <body>
+    <label for="numUsers">Number of users:</label>
+    <input class="dataInput" type="text" id="numUsers" onchange="updateCost()"><br>
+
+    <div id="quarterHolder">
+        <div class="quarterDisplay" id="q1">
+            <label class="userLabel" for="usersQ1">Num users:</label>
+            <input class="userInput userLabel" type="text" id="usersQ1">
+        </div>
+    </div>
+
+    <button onClick="addQuarter()">ADD</button>
 
     <label for="quarterNum">Quarter:</label>
     <select class="dataInput" id="quarterNum" onchange="updateCost()">
@@ -37,15 +48,23 @@
             <option value="19">Year 5 Quarter 3</option>
             <option value="20">Year 5 Quarter 4</option>
     </select><br>
-    <label for="numUsers">Number of users:</label>
-    <input class="dataInput" type="text" id="numUsers" onchange="updateCost()">
 
-    <br><br>
+    <br>
     Total Cost: $<span id="totalCost"></span><br>
     Cost per User: $<span id="userCost"></span><br>
 
     <script src="calculate.js"></script>
     <script>
+        var curId = 2;
+        function addQuarter() {
+            var holder = document.getElementById("quarterHolder");
+            var newQuarter = document.createElement("div");
+            newQuarter.className = "quarterDisplay";
+            newQuarter.id = "q" + curId;
+            curId++;
+            holder.appendChild(newQuarter);
+        }
+
         function updateCost() {
             var quarter = document.getElementById("quarterNum").value;
             var users = document.getElementById("numUsers").value;
