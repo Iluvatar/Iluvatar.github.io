@@ -30,8 +30,6 @@ function year (quarter) {
 
 // returns the cost for a given quarter and number of users
 function getQuarterlyFee (quarter, users) {
-    if (!users) return;
-
     var totalCost = 0;
 
     if (quarter == 1) {

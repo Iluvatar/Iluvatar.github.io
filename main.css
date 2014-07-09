@@ -2,10 +2,6 @@ body {
     background-color: #F0F0FF;
 }
 
-.container {
-    position: relative;
-}
-
 #quarterHolder {
     width: 680px;
     border-radius: 12px;
@@ -30,16 +26,5 @@ div.quarterDisplay {
 
 .userInput {
     width: 58px;
-}
-
-/*label {
-    display: inline-block;
-    width: 150px;
-    line-height: 2;
-}*/
-
-input {
-    display: inline-block;
-    width: 50px;
 }
 
