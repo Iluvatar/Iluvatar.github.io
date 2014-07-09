@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Sales Calculator</title>
+
+    <!-- <link rel="stylesheet" type="text/css" href="main.css"> -->
+</head>
+
+<style type="text/css">
+    body {
+        background-color: #F0F0FF;
+    }
+
+    label {
+        display: inline-block;
+        width: 150px;
+        line-height: 2;
+    }
+
+    input {
+        display: inline-block;
+        width: 50px;
+    }
+</style>
+
+<body>
+
+    <label for="quarterNum">Quarter:</label>
+    <select class="dataInput" id="quarterNum" onchange="updateCost()">
+        <option value="1">Year 1 Quarter 1</option>
+        <option value="2">Year 1 Quarter 2</option>
+        <option value="3">Year 1 Quarter 3</option>
+        <option value="4">Year 1 Quarter 4</option>
+        <option value="5">Year 2 Quarter 1</option>
+        <option value="6">Year 2 Quarter 2</option>
+        <option value="7">Year 2 Quarter 3</option>
+        <option value="8">Year 2 Quarter 4</option>
+        <option value="9">Year 3 Quarter 1</option>
+        <option value="10">Year 3 Quarter 2</option>
+        <option value="11">Year 3 Quarter 3</option>
+        <option value="12">Year 3 Quarter 4</option>
+        <option value="13">Year 4 Quarter 1</option>
+        <option value="14">Year 4 Quarter 2</option>
+        <option value="15">Year 4 Quarter 3</option>
+        <option value="16">Year 4 Quarter 4</option>
+        <option value="17">Year 5 Quarter 1</option>
+        <option value="18">Year 5 Quarter 2</option>
+        <option value="19">Year 5 Quarter 3</option>
+        <option value="20">Year 5 Quarter 4</option>
+    </select><br>
+    <label for="numUsers">Number of users:</label>
+    <input class="dataInput" type="text" id="numUsers" onchange="updateCost()">
+
+    <br><br>
+    Total Cost: $<span id="totalCost"></span><br>
+    Cost per User: $<span id="userCost"></span><br>
+
+    <script>
+        var initSetup = 5400;
+        var sysMaintenance = [0, 5000];
+        var baseFee = [15000, 14000, 13000, 12000, 11000, 10000];
+        var userFee = [39 * 12]; // fee per month * 12 for yearly fee
+
+        // 0 <= year
+        function getYearlyCost (costArray, year) {
+            if (year < costArray.length) {
+                return costArray[year];
+            } else {
+                return costArray[costArray.length - 1];
+            }
+        }
+
+        function year (quarter) {
+            return Math.floor((quarter - 1) / 4);
+        }
+
+        function getQuarterlyFee (quarter, users) {
+            var totalCost = 0;
+
+            if (quarter == 1) {
+                totalCost += initSetup;
+            }
+
+            totalCost += getYearlyCost(sysMaintenance, year(quarter)) / 4;
+            totalCost += getYearlyCost(baseFee, year(quarter)) / 4;
+            totalCost += getYearlyCost(userFee, year(quarter)) / 4 * users;
+
+            return totalCost;
+        }
+
+        function updateCost() {
+            var quarter = document.getElementById("quarterNum").value;
+            var users = document.getElementById("numUsers").value;
+
+            var totalCost = document.getElementById("totalCost");
+            var userCost = document.getElementById("userCost");
+
+            totalCost.innerHTML = getQuarterlyFee(quarter, users);
+            userCost.innerHTML = (getQuarterlyFee(quarter, users) / users).toFixed(2);
+        }
+
+        updateCost();
+    </script>
+    
+</body>
