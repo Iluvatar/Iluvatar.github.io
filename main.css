@@ -3,18 +3,13 @@ body {
 }
 
 #quarterHolder {
-    width: 680px;
-    border-radius: 12px;
-    background-color: black;
+    display: inline-block;
+    width: 690px;
+    border-radius: 15px;
+    background-color: #797981;
 }
 
-#quarterHolder:after {
-    content: "";
-    display: block;
-    clear: both;
-}
-
-div.quarterDisplay {
+.quarterDisplay {
     width: 140px;
     border-radius: 10px;
     margin: 5px;
@@ -24,7 +19,37 @@ div.quarterDisplay {
     float: left;
 }
 
+.quarterDisplay:nth-child(4n+1) {
+    margin-left: 10px;
+}
+
+.quarterDisplay:nth-child(-n+4) {
+    margin-top: 10px;
+}
+
+.quarterDisplay:last-child {
+    margin-bottom: 10px;
+}
+
+.costDisplay {
+    color: #990000;
+}
+
 .userInput {
     width: 58px;
 }
 
+.buttons {
+    position: fixed;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.controls {
+    width: 150px;
+}
+
+.boldText {
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
