@@ -30,7 +30,8 @@ function year (quarter) {
 
 // returns the cost for a given quarter and number of users
 function getQuarterlyFee (quarter, users) {
-    numUsers = users;
+    if (!users) return;
+
     var totalCost = 0;
 
     if (quarter == 1) {
@@ -39,7 +40,7 @@ function getQuarterlyFee (quarter, users) {
 
     totalCost += getYearlyCost(sysMaintenance, year(quarter)) / 4;
     totalCost += getYearlyCost(baseFee, year(quarter)) / 4;
-    totalCost += getYearlyCost(userFee, year(quarter)) / 4 * numUsers;
+    totalCost += getYearlyCost(userFee, year(quarter)) / 4 * users;
 
     return totalCost;
 }

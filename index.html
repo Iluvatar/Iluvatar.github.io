@@ -8,21 +8,30 @@
 </head>
 
 <body>
-    <link rel="shortcut icon" href="http://iluvatar.github.io//favicon.ico?v=2" />
+    <link rel="shortcut icon" href="http://iluvatar.github.io/favicon.ico?v=2" />
 
-    <label for="numUsers">Number of users:</label>
-    <input class="dataInput" type="text" id="numUsers" onchange="updateCost()"><br>
+    <!-- <label for="numUsers">Number of users:</label>
+    <input class="dataInput" id="numUsers" type="text" onchange="updateCost()"><br> -->
 
     <div id="quarterHolder">
         <div class="quarterDisplay" id="q1">
-            <label class="userLabel" for="usersQ1">Num users:</label>
-            <input class="userInput userLabel" type="text" id="usersQ1">
+            Year 1 Quarter 1<br>
+            <label for="usersQ1">Num users:</label>
+            <input class="userInput" id="usersQ1" type="text" onChange="updateQuarterPrice(1)">
+            <br>
+            Cost: <span id="costQ1"></span>
+            <br>
+            Cost per user: <span id="userCostQ1"></span>
         </div>
     </div>
 
     <button onClick="addQuarter()">ADD</button>
+    <button onClick="removeQuarter()">REMOVE</button>
+    <button onClick="resetQuarter()">RESET</button>
+    <br>
+    <br>
 
-    <label for="quarterNum">Quarter:</label>
+  <!--   <label for="quarterNum">Quarter:</label>
     <select class="dataInput" id="quarterNum" onchange="updateCost()">
         <optgroup label="Year 1">
             <option value="1">Year 1 Quarter 1</option>
@@ -30,10 +39,10 @@
             <option value="3">Year 1 Quarter 3</option>
             <option value="4">Year 1 Quarter 4</option>
         <optgroup label="Year 2">
-            <option value="5">Year 2Quarter 1</option>
-            <option value="6">Year 2Quarter 2</option>
-            <option value="7">Year 2Quarter 3</option>
-            <option value="8">Year 2Quarter 4</option>
+            <option value="5">Year 2 Quarter 1</option>
+            <option value="6">Year 2 Quarter 2</option>
+            <option value="7">Year 2 Quarter 3</option>
+            <option value="8">Year 2 Quarter 4</option>
         <optgroup label="Year 3">
             <option value="9">Year 3 Quarter 1</option>
             <option value="10">Year 3 Quarter 2</option>
@@ -53,18 +62,93 @@
 
     <br>
     Total Cost: $<span id="totalCost"></span><br>
-    Cost per User: $<span id="userCost"></span><br>
+    Cost per User: $<span id="userCost"></span><br> -->
 
     <script src="calculate.js"></script>
     <script>
-        var curId = 2;
+        var nextQuarter = 2; // next quarter to show
+
         function addQuarter() {
             var holder = document.getElementById("quarterHolder");
             var newQuarter = document.createElement("div");
             newQuarter.className = "quarterDisplay";
-            newQuarter.id = "q" + curId;
-            curId++;
+            newQuarter.id = "q" + nextQuarter;
+
+            var numUsersFill = document.getElementById("usersQ" + (nextQuarter - 1)).value;
+
+            var text1 = document.createTextNode("Year " + Math.ceil(nextQuarter / 4) +
+                                               " Quarter " + ((nextQuarter - 1) % 4 + 1));
+
+            var label = document.createElement("label");
+            label.className = "userLabel";
+            label.setAttribute("for", "usersQ" + nextQuarter);
+            label.appendChild(document.createTextNode("Num users: "));
+
+            var input = document.createElement("input");
+            input.className = "userInput";
+            input.id = "usersQ" + nextQuarter;
+            input.type = "text";
+            input.value = numUsersFill;
+            input.setAttribute("onChange", "updateQuarterPrice(" + nextQuarter + ")");
+
+            var text2 = document.createTextNode("Cost: ");
+
+            var cost = document.createElement("span");
+            cost.id = "costQ" + nextQuarter;
+
+            var text3 = document.createTextNode("Cost per user: ");
+
+            var userCost = document.createElement("span");
+            userCost.id = "userCostQ" + nextQuarter;
+
+            newQuarter.appendChild(text1);
+            newQuarter.appendChild(document.createElement("br"));
+            newQuarter.appendChild(label);
+            newQuarter.appendChild(input);
+            newQuarter.appendChild(document.createElement("br"));
+            newQuarter.appendChild(text2);
+            newQuarter.appendChild(cost);
+            newQuarter.appendChild(document.createElement("br"));
+            newQuarter.appendChild(text3);
+            newQuarter.appendChild(userCost);
+
             holder.appendChild(newQuarter);
+            updateQuarterPrice(nextQuarter);
+
+            nextQuarter++;
+        }
+
+        function removeQuarter() {
+            if (nextQuarter > 2) {
+                var remove = document.getElementById("q" + (nextQuarter - 1));
+                remove.parentNode.removeChild(remove);
+                nextQuarter--;
+            }
+        }
+
+        function resetQuarter() {
+            while (nextQuarter > 2) {
+                removeQuarter();
+            }
+
+            document.getElementById("usersQ1").value = "";
+            updateQuarterPrice(1);
+        }
+
+        function updateQuarterPrice(quarter) {
+            var numUsers = document.getElementById("usersQ" + quarter).value;
+
+            if (isNaN(numUsers) || numUsers == "") {
+                document.getElementById("costQ" + quarter).innerHTML = "";
+                document.getElementById("userCostQ" + quarter).innerHTML = "";
+                return;
+            }
+
+            var totalCost =  getQuarterlyFee(quarter, numUsers);
+            var userCost = Math.round(getQuarterlyFee(quarter, numUsers) / numUsers);
+
+            document.getElementById("costQ" + quarter).innerHTML = "$" + totalCost;
+            document.getElementById("userCostQ" + quarter).innerHTML = "$" + userCost;
         }
 
         function updateCost() {

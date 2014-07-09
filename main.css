@@ -6,6 +6,12 @@ body {
     position: relative;
 }
 
+#quarterHolder {
+    width: 680px;
+    border-radius: 12px;
+    background-color: black;
+}
+
 #quarterHolder:after {
     content: "";
     display: block;
@@ -13,24 +19,17 @@ body {
 }
 
 div.quarterDisplay {
-    width: 152px;
-    height: 152px;
+    width: 140px;
     border-radius: 10px;
     margin: 5px;
+    padding: 10px;
     background-color: #D8D8E6;
     display: block;
     float: left;
 }
 
-.userLabel {
-    position: relative;
-    top: 10px;
-    left: 10px;
-}
-
 .userInput {
-    display: inline-block;
-    width: 50px;
+    width: 58px;
 }
 
 /*label {
