@@ -12,7 +12,7 @@
 </style>
 
 <body>
-    Use functions of x. You can do sqrt(x) for square root. Try not to have nested parens in the square roots.
+    Use functions of x. Do x^.5 or whatever for roots.
     <br><br>
     Y = <input type="text" id="fun" style="width:150px">
     <br><br>
@@ -30,7 +30,7 @@
         
         fun = fun.replace(/X/g, "x");
         fun = fun.replace(/([\w\.]+)\^([\w\.]+)/g, "Math.pow($1,$2)");
-        fun = fun.replace(/(sqrt\([^)]+\))/g, "Math.pow($1,.5)");
+        //fun = fun.replace(/(sqrt\([^)]+\))/g, "Math.pow($1,.5)");
         
         var res = eval(fun);
         
