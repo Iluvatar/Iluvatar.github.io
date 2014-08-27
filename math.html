@@ -18,7 +18,8 @@
     <br><br>
     X1: <input type="text" id="x1"> X2: <input type="text" id="x2">
     <br><br>
-    <button onclick="slope()">Get Slope</button><br>
+    <button onclick="slope()">Get Slope</button>
+    <br><br>
     <div id="out"></div>
 </body>
 
@@ -35,7 +36,7 @@
         var res1 = eval(fun.replace(/x/g, x1));
         var res2 = eval(fun.replace(/x/g, x2));
         
-        document.getElementById("out").innerHTML = "Slope: " + (res2 - res1) / (x2 - x1);
+        document.getElementById("out").innerHTML = x1 + " to " + x2 + ": Slope: " + (res2 - res1) / (x2 - x1);
     }
 </script>
 
