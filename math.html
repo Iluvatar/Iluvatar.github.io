@@ -21,6 +21,7 @@
     <button onclick="slope()">Get Slope</button>
     <br><br>
     <div id="out"></div>
+    <div id="d"></div>
 </body>
 
 <script>
@@ -37,6 +38,7 @@
         var res2 = eval(fun.replace(/x/g, x2));
         
         document.getElementById("out").innerHTML += x1 + " to " + x2 + " slope: " + (res2 - res1) / (x2 - x1) + "<br>";
+        document.getElementById("d").innerHTML = fun;
     }
 </script>
 
