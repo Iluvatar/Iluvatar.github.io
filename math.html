@@ -32,9 +32,10 @@
         fun = fun.replace(/([\w\.\(\)]+)\^([\w\.\(\)]+)/g, "Math.pow($1,$2)");
         //fun = fun.replace(/(sqrt\([^)]+\))/g, "Math.pow($1,.5)");
         
-        var res = eval(fun);
+        var res1 = eval(fun.replace(/x/g, x1));
+        var res2 = eval(fun.replace(/x/g, x2));
         
-        document.getElementById("out").innerHTML=fun + "<br>" + res;
+        document.getElementById("out").innerHTML = "Slope: " + (res2 - res1) / (x2 - x1);
     }
 </script>
 
