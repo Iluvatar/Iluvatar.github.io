@@ -31,7 +31,7 @@
         var x2 = document.getElementById("x2").value;
         
         fun = fun.replace(/X/g, "x");
-        fun = fun.replace(/([\w\.\(\)]+)\^([\w\.\(\)]+)/g, "Math.pow($1,$2)");
+        fun = fun.replace(/([^ ]+)\^([^ ]+)/g, "Math.pow($1,$2)");
         //fun = fun.replace(/(sqrt\([^)]+\))/g, "Math.pow($1,.5)");
         
         var res1 = eval(fun.replace(/x/g, x1));
