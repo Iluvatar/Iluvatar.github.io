@@ -12,7 +12,8 @@
 </style>
 
 <body>
-    <span><span>Y = <input type="text" id="fun" style="width:150px"></span></span>
+    Use functions of x. You can do sqrt(x) for square root. Try not to have nested parens in the square roots.
+    Y = <input type="text" id="fun" style="width:150px">
     <br><br>
     X1: <input type="text" id="x1"> X2: <input type="text" id="x2">
     <br><br>
@@ -22,11 +23,17 @@
 
 <script>
     function slope() {
+        var fun = document.getElementById("fun").value;
         var x1 = document.getElementById("x1").value;
-        var y1 = document.getElementById("y1").value;
         var x2 = document.getElementById("x2").value;
-        var y2 = document.getElementById("y2").value;
-        document.getElementById("out").innerHTML=(y2-y1)/(x2-x1);
+        
+        fun = fun.replace(/X/g, "x");
+        fun = fun.replace(/(\w+)^(\w+)/g, "Math.pow($1,$2)");
+        fun = fun.replace(/(sqrt\([^\)]\))/g, "Math.pow($1,$2)");
+        
+        var res = eval(fun);
+        
+        document.getElementById("out").innerHTML=fun + "<br>" + res;
     }
 </script>
 
