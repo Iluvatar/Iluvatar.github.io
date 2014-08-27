@@ -30,7 +30,7 @@
         
         fun = fun.replace(/X/g, "x");
         fun = fun.replace(/([\w\.]+)\^([\w\.]+)/g, "Math.pow($1,$2)");
-        fun = fun.replace(/(sqrt\([^\)]\))/g, "Math.pow($1,$2)");
+        fun = fun.replace(/(sqrt\([^)]\))/g, "Math.pow($1,$2)");
         
         var res = eval(fun);
         
