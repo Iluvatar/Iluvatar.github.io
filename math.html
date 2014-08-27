@@ -9,7 +9,19 @@
 
 <body>
     X1: <input type="text" id="x1"> Y1: <input type="text" id="y1"><br>
-    X2: <input type="text" id="x2"> Y2: <input type="text" id="y2">
+    X2: <input type="text" id="x2"> Y2: <input type="text" id="y2"><br>
+    <button onclick="slope()">Get Slope</button><br>
+    <div id="out"></div>
 </body>
+
+<script>
+    function slope() {
+        var x1 = document.getElementById("x1");
+        var y1 = document.getElementById("y1");
+        var x2 = document.getElementById("x2");
+        var y2 = document.getElementById("y2");
+        document.getElementById("out").innerHTML=(x2-x1)/(y2-y1);
+    }
+</script>
 
 </html>
