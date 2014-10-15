@@ -7,228 +7,233 @@
     <title>Index</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"></link>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     
 </head>
 
 <body>
     <div class="container theme-showcase" role="main">
-    
-    <button type="button" class="btn btn-default navbar-btn">Sign in</button>
-    
-    <a href="./uwrov.html">Back to main page</a> <br><br>
-    <span class="glyphicon glyphicon-star"></span> Star<br><br>
-    
-    
-    <p>SourceTree is a GUI created for Git. It was developed by Atlassian, as if anyone cares about
-    that. Note that the terms 'Git' and 'SourceTree' are used somewhat interchangeably in this
-    article. Technically, Git is the underlying version control system that provides all the
-    functionality and SourceTree is the GUI that we are using to access it, but for the purposes
-    here they are the same thing.</p>
 
-    <p>Sometimes menu item names or other things change to reflect the names of something. In these
-    cases, I will denote the variable things with &lt;angle brackets&gt;, so a possible menu item
-    might be described as 'Delete &lt;branch&gt;'. In the program, for the 'master' branch, the
-    actual menu item would then read 'Delete master'. Simple.</p>
+        <button type="button" class="btn btn-default navbar-btn">Sign in</button>
 
-    <p><br></p>
+        <a href="./uwrov.html">Back to main page</a> <br><br>
+        <span class="glyphicon glyphicon-star"></span> Star<br><br>
 
-    <h3>Install</h3>
 
-    <div>
-        SourceTree can be downloaded from <a href="http://sourcetreeapp.com">sourcetreeapp.com</a>.
-        Then, open the .dmg and drag the application do you Applications folder. After that, should
-        you be feeling so adventurous, you may open the app.
-    </div>
-
-    <div>
-        <br>
-    </div>
-
-    <h3>Use</h3>
-
-    <h4>General Notes</h4>
-
-    <div>
-        Whenever you make changes to a file, you may have to refresh SourceTree so it sees the
-        changes if you get impatient waiting for it to update. You can either go to "View &gt;
-        Refresh", or, if you want to get really fancy,&nbsp;<span style=
-        "font-family: Helvetica, Arial; font-size: 14px; line-height: 19.600000381469727px; background-color: rgb(255, 255, 224);">⌘R</span>.
-        Also, if the instructions say to do something such as create a branch, and there's a popup
-        with a bunch of options, leave everything not specified as default if you're confused. Just
-        keep clicking 'Next' or 'Create' or whatever the blue button says.
-    </div>
-
-    <h4>Opening Repositories</h4>
-
-    <div>
-        If you have a repo that's already set up for git on your computer, you can open it in
-        SourceTree by going to "File &gt; Open..." and selecting the appropriate folder. If not,
-        you'll probably want to clone a repo from somewhere. In that case, go to "File &gt; New /
-        Clone". The Source Path is the remote URL, which should be listed somewhere on wherever
-        it's hosted and and in .git (on Assembla, it's next to the repo name on any of the Git
-        tools). Set the Destination Path to wherever you want your local copy of the repo to be
-        stored. You can also bookmark repositories by going to "File &gt; Bookmark Open
-        Repositories..." so they show up on the home screen when you start the app.
-    </div>
-
-    <h4>Pulling from Remote</h4>
-
-    <div>
-        In the general case, it's best to pull any changes from the remote repo before working to
-        make sure you have the latest updates. To do this, simply click the "Pull" button (the
-        solid down arrow) from the top menu bar. Pulling gets the latest changes from the remote
-        and automatically merges. Alternatively, you can get the latest updates <i>without</i>
-        merging them by Fetching (dashed down arrow). You will then have to merge them into later
-        to see the changes.
-    </div>
-
-    <div>
-        Hopefully when pulling updates, there will be no problem and the merge will happen cleanly.
-        If this happens, then you are done. However, if there have been changes to the remote and
-        your local repos, then there may be conflicts. See&nbsp;'Resolving Merge Conflicts' under
-        the&nbsp;Troubleshooting section for help.
-    </div>
-
-    <h4>Pushing to Remote</h4>
-
-    <div>
-        When you want to upload your changes so that everyone can see them and stand in awe of
-        their glory, you want to push to your remote. To do this, make sure you have committed all
-        the changes you want to show (you can also make changes to your local copy and not commit
-        them, and they won't be pushed). If no one's pushed anything of their own since you last
-        pulled, then the push should go smoothly. If not, and you get the error:
-    </div>
-    <pre>
-error: failed to push some refs to '&lt;your remote&gt;'
-</pre>
-
-    <div>
-        then you have to pull the most recent code, merge it if necessary, and re-push. See
-        'Resolving Merge Conflicts' under the Troubleshooting section for help.
-    </div>
-
-    <h4>Branching</h4>
-
-    <div>
-        Git is designed to make branching easy and painless, unlike certain other systems (I'm sure
-        SVN has its own merits, such as the fact that everyone uses it. Hey, it's like Windows!).
-        Branching usually occurs when you want to work on a feature or side project without
-        disrupting the main line of development. Think of branches as separate lines of development
-        that are then merged back into the master branch when completed. You can see what branches
-        you have in the left bar, under 'Branches'. To switch to editing a specific branch, right
-        click on it and select 'Checkout &lt;branch name&gt;' or just double click.
-    </div>
-
-    <div>
-        In SourceTree, create a new branch by clicking on the Branch button on the top menu bar.
-        The Current Branch is the branch you are branching off of, and New Branch is the name of
-        your new branch. Once you create the branch, you will notice that the new branch and the
-        original are located at the same commit. If you start editing them however, you'll see
-        where they diverge.
-    </div>
-
-    <h4>Merging</h4>
-
-    <div>
-        Merging is the opposite of branching. It's what you do to integrate branches back into each
-        other (such as when you're done implementing a feature). It is also done to integrate
-        changes in the remote. This section will focus in merging branches locally.
-    </div>
-
-    <div>
-        First, to merge two branches, checkout the branch you want to merge <i>into</i>. This
-        branch will reflect the changes of both branches while the other won't change. Then, right
-        click on the branch you want to merge (from the left bar) and choose 'Merge &lt;this
-        branch&gt; into &lt;branch to merge into&gt;'. If there are merge conflicts, see 'Resolving
-        Merge Conflicts' under the Troubleshooting section for help. Once that is done, you'll see
-        the branches coming together in the Log view. You can also delete the old branches if you
-        want by right clicking on them in the left bar and choosing 'Delete &lt;branch&gt;'.
-    </div>
-
-    <h4>Tagging</h4>
-
-    <div>
-        Tags can be used to flag specific commits for later use. This essentially means that you
-        can keep track of different versions of your work easily. Tagging a commit is easy: just
-        click the tag button in the top menu bar. You can either tag the commit that your branch
-        points to (the default), or you can go tag a specific commit. Tags will also be added to
-        the remote so everyone else can see and use them.
-    </div>
-
-    <div>
-        <br>
-    </div>
-
-    <h3>Troubleshooting</h3>
-
-    <h4>Resolving Merge Conflicts</h4>
-
-    <div>
-        If you try to merge branches or pull from remote, there may be merge conflicts awaiting
-        you. These are just places where two (or more) people modified the code/documents in ways
-        that Git can't automatically merge. As such, it is up to you to go in and manually solve
-        the problem.
-    </div>
-
-    <div>
-        Usually (always?) when there are unresolved conflicts,&nbsp;SourceTree will show an
-        'Uncommitted changes' entry in the log view that shows the conflicted file(s). You can fix
-        these conflicts in the file itself, or by going to "Actions &gt; Resolve Conflicts &gt;
-        Launch External Merge Tool". The merge tool is a basic tool that allows you to compare
-        changes side by side and for each change choose how you want to handle it (see below for
-        more). Note that you have to quit the merge tool application for the changes to take
-        effect, and even if you do not change anything, you have to save it. However, for finer
-        control over how the merge occurs, Git provides some helpful info in the file. Where the
-        conflicts occur in the file, there should be something that looks like:
-    </div>
-    <pre>
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-This is stuff I did
-=======
-Someone else wrote where I wanted to
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; master
-</pre>
-
-    <div>
-        The top part is changes you have made, and the bottom is what was originally there that
-        conflicted with your additions (or deletions). Just change the file to what you want it to
-        look like, then commit it as usual. SourceTree may also create a &lt;file&gt;.orig that has
-        lists the conflicts, but unless these are important to you (and you can also see all these
-        changes through SourceTree, admittedly with some effort) you can probably discard it.
-    </div>If you're working on a Mac with Xcode, you'll be able to use the FileMerge merge/diff
-    editor by default. However, you may want to download the P4Merge editor from Perforce as it
-    gives you more control over how the merge is made as well as an easy way to see changes. You
-    can download it at&nbsp;<a href=
-    "http://www.perforce.com/downloads/Perforce/20-User#10">www.perforce.com/downloads/Perforce/20-User#10</a>.
-    Note that you only have to move p4merge to your Applications folder, not the other files there.
-    Then, in SourceTree, under "SourceTree &gt; Preferences... &gt; Diff", you be able to change
-    the "Visual Diff Tool" and "Merge Tool" to p4merge. When you want to merge files or just see
-    the differences, they'll be open in p4.
-
-    <h4>Errors when Pulling</h4>
-
-    <div>
-        If you get the following error:
-    </div>
-    <pre>
-error: Your local changes to the following files would be overwritten by merge:
-</pre>
-
-    <div>
-        then you have uncommitted changes when trying to pull. Git doesn't want to delete these
-        changes, so it throws an error. If you don't care about the changes, then click the Reset
-        button. It will bring up a dialog so you can see what changes you've made, and you can
-        discard them from there.
-    </div>
-
-    <div>
-        More likely though, you'll want to commit your changes and merge them with the updates.
-        Commit changes as usual, then pull again. If it executes successfully, then you are done.
-        If it pops up saying that there are merge conflicts, then you have to resolve those
-        yourself. See the 'Resolving Merge Conflicts' section for help with this.
-        
-        
+        <div>
+            SourceTree is a GUI created for Git. It was developed by Atlassian, as if anyone cares about
+            that. Note that the terms 'Git' and 'SourceTree' are used somewhat interchangeably in this
+            article. Technically, Git is the underlying version control system that provides all the
+            functionality and SourceTree is the GUI that we are using to access it, but for the purposes
+            here they are the same thing.
         </div>
-    </div><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+        <div>
+            Sometimes menu item names or other things change to reflect the names of something. In these
+            cases, I will denote the variable things with &lt;angle brackets&gt;, so a possible menu item
+            might be described as 'Delete &lt;branch&gt;'. In the program, for the 'master' branch, the
+            actual menu item would then read 'Delete master'. Simple.
+        </div>
+
+        <br><br>
+
+        <h3>Install</h3>
+
+        <div>
+            SourceTree can be downloaded from <a href="http://sourcetreeapp.com">sourcetreeapp.com</a>.
+            Then, open the .dmg and drag the application do you Applications folder. After that, should
+            you be feeling so adventurous, you may open the app.
+        </div>
+
+        <div>
+            <br>
+        </div>
+
+        <h3>Use</h3>
+
+        <h4>General Notes</h4>
+
+        <div>
+            Whenever you make changes to a file, you may have to refresh SourceTree so it sees the
+            changes if you get impatient waiting for it to update. You can either go to "View &gt;
+            Refresh", or, if you want to get really fancy,&nbsp;<span style=
+            "font-family: Helvetica, Arial; font-size: 14px; line-height: 19.600000381469727px; background-color: rgb(255, 255, 224);">⌘R</span>.
+            Also, if the instructions say to do something such as create a branch, and there's a popup
+            with a bunch of options, leave everything not specified as default if you're confused. Just
+            keep clicking 'Next' or 'Create' or whatever the blue button says.
+        </div>
+
+        <h4>Opening Repositories</h4>
+
+        <div>
+            If you have a repo that's already set up for git on your computer, you can open it in
+            SourceTree by going to "File &gt; Open..." and selecting the appropriate folder. If not,
+            you'll probably want to clone a repo from somewhere. In that case, go to "File &gt; New /
+            Clone". The Source Path is the remote URL, which should be listed somewhere on wherever
+            it's hosted and and in .git (on Assembla, it's next to the repo name on any of the Git
+            tools). Set the Destination Path to wherever you want your local copy of the repo to be
+            stored. You can also bookmark repositories by going to "File &gt; Bookmark Open
+            Repositories..." so they show up on the home screen when you start the app.
+        </div>
+
+        <h4>Pulling from Remote</h4>
+
+        <div>
+            In the general case, it's best to pull any changes from the remote repo before working to
+            make sure you have the latest updates. To do this, simply click the "Pull" button (the
+            solid down arrow) from the top menu bar. Pulling gets the latest changes from the remote
+            and automatically merges. Alternatively, you can get the latest updates <i>without</i>
+            merging them by Fetching (dashed down arrow). You will then have to merge them into later
+            to see the changes.
+        </div>
+
+        <div>
+            Hopefully when pulling updates, there will be no problem and the merge will happen cleanly.
+            If this happens, then you are done. However, if there have been changes to the remote and
+            your local repos, then there may be conflicts. See&nbsp;'Resolving Merge Conflicts' under
+            the&nbsp;Troubleshooting section for help.
+        </div>
+
+        <h4>Pushing to Remote</h4>
+
+        <div>
+            When you want to upload your changes so that everyone can see them and stand in awe of
+            their glory, you want to push to your remote. To do this, make sure you have committed all
+            the changes you want to show (you can also make changes to your local copy and not commit
+            them, and they won't be pushed). If no one's pushed anything of their own since you last
+            pulled, then the push should go smoothly. If not, and you get the error:
+        </div>
+        <pre>
+            error: failed to push some refs to '&lt;your remote&gt;'
+        </pre>
+
+        <div>
+            then you have to pull the most recent code, merge it if necessary, and re-push. See
+            'Resolving Merge Conflicts' under the Troubleshooting section for help.
+        </div>
+
+        <h4>Branching</h4>
+
+        <div>
+            Git is designed to make branching easy and painless, unlike certain other systems (I'm sure
+            SVN has its own merits, such as the fact that everyone uses it. Hey, it's like Windows!).
+            Branching usually occurs when you want to work on a feature or side project without
+            disrupting the main line of development. Think of branches as separate lines of development
+            that are then merged back into the master branch when completed. You can see what branches
+            you have in the left bar, under 'Branches'. To switch to editing a specific branch, right
+            click on it and select 'Checkout &lt;branch name&gt;' or just double click.
+        </div>
+
+        <div>
+            In SourceTree, create a new branch by clicking on the Branch button on the top menu bar.
+            The Current Branch is the branch you are branching off of, and New Branch is the name of
+            your new branch. Once you create the branch, you will notice that the new branch and the
+            original are located at the same commit. If you start editing them however, you'll see
+            where they diverge.
+        </div>
+
+        <h4>Merging</h4>
+
+        <div>
+            Merging is the opposite of branching. It's what you do to integrate branches back into each
+            other (such as when you're done implementing a feature). It is also done to integrate
+            changes in the remote. This section will focus in merging branches locally.
+        </div>
+
+        <div>
+            First, to merge two branches, checkout the branch you want to merge <i>into</i>. This
+            branch will reflect the changes of both branches while the other won't change. Then, right
+            click on the branch you want to merge (from the left bar) and choose 'Merge &lt;this
+            branch&gt; into &lt;branch to merge into&gt;'. If there are merge conflicts, see 'Resolving
+            Merge Conflicts' under the Troubleshooting section for help. Once that is done, you'll see
+            the branches coming together in the Log view. You can also delete the old branches if you
+            want by right clicking on them in the left bar and choosing 'Delete &lt;branch&gt;'.
+        </div>
+
+        <h4>Tagging</h4>
+
+        <div>
+            Tags can be used to flag specific commits for later use. This essentially means that you
+            can keep track of different versions of your work easily. Tagging a commit is easy: just
+            click the tag button in the top menu bar. You can either tag the commit that your branch
+            points to (the default), or you can go tag a specific commit. Tags will also be added to
+            the remote so everyone else can see and use them.
+        </div>
+
+        <div>
+            <br>
+        </div>
+
+        <h3>Troubleshooting</h3>
+
+        <h4>Resolving Merge Conflicts</h4>
+
+        <div>
+            If you try to merge branches or pull from remote, there may be merge conflicts awaiting
+            you. These are just places where two (or more) people modified the code/documents in ways
+            that Git can't automatically merge. As such, it is up to you to go in and manually solve
+            the problem.
+        </div>
+
+        <div>
+            Usually (always?) when there are unresolved conflicts,&nbsp;SourceTree will show an
+            'Uncommitted changes' entry in the log view that shows the conflicted file(s). You can fix
+            these conflicts in the file itself, or by going to "Actions &gt; Resolve Conflicts &gt;
+            Launch External Merge Tool". The merge tool is a basic tool that allows you to compare
+            changes side by side and for each change choose how you want to handle it (see below for
+            more). Note that you have to quit the merge tool application for the changes to take
+            effect, and even if you do not change anything, you have to save it. However, for finer
+            control over how the merge occurs, Git provides some helpful info in the file. Where the
+            conflicts occur in the file, there should be something that looks like:
+        </div>
+        <pre>
+            &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+            This is stuff I did
+            =======
+            Someone else wrote where I wanted to
+            &gt;&gt;&gt;&gt;&gt;&gt;&gt; master
+        </pre>
+
+        <div>
+            The top part is changes you have made, and the bottom is what was originally there that
+            conflicted with your additions (or deletions). Just change the file to what you want it to
+            look like, then commit it as usual. SourceTree may also create a &lt;file&gt;.orig that has
+            lists the conflicts, but unless these are important to you (and you can also see all these
+            changes through SourceTree, admittedly with some effort) you can probably discard it.
+        </div>If you're working on a Mac with Xcode, you'll be able to use the FileMerge merge/diff
+        editor by default. However, you may want to download the P4Merge editor from Perforce as it
+        gives you more control over how the merge is made as well as an easy way to see changes. You
+        can download it at&nbsp;<a href=
+        "http://www.perforce.com/downloads/Perforce/20-User#10">www.perforce.com/downloads/Perforce/20-User#10</a>.
+        Note that you only have to move p4merge to your Applications folder, not the other files there.
+        Then, in SourceTree, under "SourceTree &gt; Preferences... &gt; Diff", you be able to change
+        the "Visual Diff Tool" and "Merge Tool" to p4merge. When you want to merge files or just see
+        the differences, they'll be open in p4.
+
+        <h4>Errors when Pulling</h4>
+
+        <div>
+            If you get the following error:
+        </div>
+        <pre>
+            error: Your local changes to the following files would be overwritten by merge:
+        </pre>
+
+        <div>
+            then you have uncommitted changes when trying to pull. Git doesn't want to delete these
+            changes, so it throws an error. If you don't care about the changes, then click the Reset
+            button. It will bring up a dialog so you can see what changes you've made, and you can
+            discard them from there.
+        </div>
+
+        <div>
+            More likely though, you'll want to commit your changes and merge them with the updates.
+            Commit changes as usual, then pull again. If it executes successfully, then you are done.
+            If it pops up saying that there are merge conflicts, then you have to resolve those
+            yourself. See the 'Resolving Merge Conflicts' section for help with this.
+
+
+        </div>
+    </div>
 </body>
 </html>
