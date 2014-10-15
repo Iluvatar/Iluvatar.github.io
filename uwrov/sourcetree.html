@@ -198,39 +198,43 @@
             see all these changes through SourceTree, admittedly with some effort) you can probably
             discard it.
         </div>
-    </div>If you're working on a Mac with Xcode, you'll be able to use the FileMerge merge/diff
-    editor by default. However, you may want to download the P4Merge editor from Perforce as it
-    gives you more control over how the merge is made as well as an easy way to see changes. You
-    can download it at&nbsp;<a href=
-    "http://www.perforce.com/downloads/Perforce/20-User#10">www.perforce.com/downloads/Perforce/20-User#10</a>.
-    Note that you only have to move p4merge to your Applications folder, not the other files there.
-    Then, in SourceTree, under "SourceTree &gt; Preferences... &gt; Diff", you be able to change
-    the "Visual Diff Tool" and "Merge Tool" to p4merge. When you want to merge files or just see
-    the differences, they'll be open in p4.
 
-    <h4>Errors when Pulling</h4>
+        <div>
+            If you're working on a Mac with Xcode, you'll be able to use the FileMerge merge/diff
+            editor by default. However, you may want to download the P4Merge editor from Perforce
+            as it gives you more control over how the merge is made as well as an easy way to see
+            changes. You can download it at&nbsp;<a href=
+            "http://www.perforce.com/downloads/Perforce/20-User#10">www.perforce.com/downloads/Perforce/20-User#10</a>.
+            Note that you only have to move p4merge to your Applications folder, not the other
+            files there. Then, in SourceTree, under "SourceTree &gt; Preferences... &gt; Diff", you
+            be able to change the "Visual Diff Tool" and "Merge Tool" to p4merge. When you want to
+            merge files or just see the differences, they'll be open in p4.
+        </div>
 
-    <div>
-        If you get the following error:
-    </div>
-    <pre>
+        <h4>Errors when Pulling</h4>
+
+        <div>
+            If you get the following error:
+        </div>
+        <pre>
             error: Your local changes to the following files would be overwritten by merge:
         
 </pre>
 
-    <div>
-        then you have uncommitted changes when trying to pull. Git doesn't want to delete these
-        changes, so it throws an error. If you don't care about the changes, then click the Reset
-        button. It will bring up a dialog so you can see what changes you've made, and you can
-        discard them from there.
-    </div><br>
+        <div>
+            then you have uncommitted changes when trying to pull. Git doesn't want to delete these
+            changes, so it throws an error. If you don't care about the changes, then click the
+            Reset button. It will bring up a dialog so you can see what changes you've made, and
+            you can discard them from there.
+        </div><br>
 
-    <div>
-        More likely though, you'll want to commit your changes and merge them with the updates.
-        Commit changes as usual, then pull again. If it executes successfully, then you are done.
-        If it pops up saying that there are merge conflicts, then you have to resolve those
-        yourself. See the 'Resolving Merge Conflicts' section for help with this.
-    </div><br>
-    <br>
+        <div>
+            More likely though, you'll want to commit your changes and merge them with the updates.
+            Commit changes as usual, then pull again. If it executes successfully, then you are
+            done. If it pops up saying that there are merge conflicts, then you have to resolve
+            those yourself. See the 'Resolving Merge Conflicts' section for help with this.
+        </div><br>
+        <br>
+    </div>
 </body>
 </html>
