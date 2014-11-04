@@ -43,6 +43,12 @@ header.carousel .fill {
     background-size: cover;
 }
 
+/* About page */
+
+.description {
+    height: 80px;
+}
+
 /* Portfolio carousel */
 
 .fixed-height {
